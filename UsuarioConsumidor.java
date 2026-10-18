@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/** Representa a un usuario consumidor en la plataforma de streaming.
+/**
+ * Representa a un usuario consumidor en la plataforma de streaming.
  * Gestiona sus colecciones personales a traves de su {@link Biblioteca}, 
  * su {@link Plan} de suscripción actual y su historial de escuchas. 
  */
@@ -18,7 +19,8 @@ public class UsuarioConsumidor {
     private List<Reproduccion> historialReciente;
     private Biblioteca biblioteca;
     
-    /** Inicializa un nuevo usuario consumidor asignándole un {@link PlanGratuito} default
+    /** 
+     * Inicializa un nuevo usuario consumidor asignándole un {@link PlanGratuito} default
      * y un identificador alfanumérico único.
      *  @param nombre Nombre de usuario para identificarse en la plataforma. 
      *  @param email Correo electrónico del usuario. 
@@ -34,7 +36,8 @@ public class UsuarioConsumidor {
         this.plan= new PlanGratuito(); //default
     }
 
-    /**Crea y registra una nueva lista de reproducción en la {@link Biblioteca}.
+    /**
+     * Crea y registra una nueva lista de reproducción en la {@link Biblioteca}.
      * @param nombre Nombre descriptivo para la nueva {@link Playlist}. 
      * @return La {@link Playlist} creada e incorporada a la biblioteca. 
      */
@@ -42,7 +45,8 @@ public class UsuarioConsumidor {
         return this.biblioteca.crearPlaylist(nombre);
     }
     
-    /**Añade un {@link Contenido} a una {@link Playlist} guardada en la {@link Biblioteca}.
+    /**
+     * Añade un {@link Contenido} a una {@link Playlist} guardada en la {@link Biblioteca}.
      * @param p {@link Playlist} destino donde se agregará el elemento.
      * @param c {@link Contenido} a incorporar en la lista. 
      */
@@ -52,7 +56,8 @@ public class UsuarioConsumidor {
         }
     }
 
-    /**Marca un {@link Contenido} como favorito guardándolo en la sección correspondiente de la {@link Biblioteca}.
+    /**
+     * Marca un {@link Contenido} como favorito guardándolo en la sección correspondiente de la {@link Biblioteca}.
      * @param c {@link Contenido} a marcar con "Me Gusta". 
      */
     public void marcarMeGusta(Contenido c){
@@ -61,7 +66,8 @@ public class UsuarioConsumidor {
         }
     }
 
-    /**Ejecuta la reproducción de un {@link Contenido} a través del {@link Reproductor} 
+    /**
+     * Ejecuta la reproducción de un {@link Contenido} a través del {@link Reproductor} 
      * y {@link #registrarEscucha(Contenido) registra el evento} en el historial personal. 
      * @param c {@link Contenido} que se reproducirá. 
      */
@@ -72,7 +78,8 @@ public class UsuarioConsumidor {
         }
     }
 
-    /**Añade un nuevo registro de {@link Reproduccion} al historial reciente del usuario.
+    /**
+     * Añade un nuevo registro de {@link Reproduccion} al historial reciente del usuario.
      * @param c {@link Contenido} escuchado por el usuario. 
      */
     public void registrarEscucha(Contenido c){
