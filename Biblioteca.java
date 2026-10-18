@@ -24,8 +24,8 @@ public class Biblioteca {
      * @param nombre Nombre descriptivo para la nueva lista.
      * @return La {@link Playlist} creada e incorporada. 
      */
-    public Playlist crearPlaylist(String nombre){
-        Playlist p= new Playlist(nombre);
+    public Playlist crearPlaylist(String nombre, UsuarioConsumidor creador){
+        Playlist p= new Playlist(nombre,creador);
         this.playlistsGenerales.add(p);
         return p;
     }
