@@ -42,7 +42,7 @@ public class UsuarioConsumidor {
      * @return La {@link Playlist} creada e incorporada a la biblioteca. 
      */
     public Playlist crearPlaylist(String nombre){
-        return this.biblioteca.crearPlaylist(nombre);
+        return this.biblioteca.crearPlaylist(nombre, this);
     }
     
     /**
