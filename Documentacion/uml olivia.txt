@@ -1,0 +1,157 @@
+---
+config:
+    theme: redux-dark-color
+---
+classDiagram
+    class PlataformaStreaming {
+        -String nombre
+        -String fechaLanzamiento
+        +agregarUsuario(UsuarioConsumidor u) void
+        +mostrarCatalogo
+    }
+    class Catalogo{
+        +publicarContenido(Contenido c) void
+        +getContenido(String nombre) String
+        +getContenidoMasReproducido() Contenido
+        +getContenidosArtista(String creador) List~Contenido~
+        +filtrarPorGenero(String genero) List~Contenido~
+        +buscarContenido(String criterio) List~Contenido~
+        +getTop3Artista(String creador) List~Contenido~
+    }
+    class UsuarioConsumidor { 
+        -String id
+        -String nombreUsuario
+        -String email
+        -String fechaInicioCuenta
+        +getId() String
+        +getNombre() String
+        +crearPlaylist(String nombre) Playlist
+        +marcarMeGusta(Contenido c) void
+        +reproducirContenido(Contenido c) void
+        +registrarEscucha(Contenido c) void
+        +getHistorial() List~Reproduccion~
+    }
+    class Biblioteca{
+        + crearPlaylist(Playlist p) void
+        + eliminarPlaylist(Playlist p) void
+        + getPlaylist(String nombre) Playlist
+        + getMeGusta() Playlist
+        + marcarMeGusta(Contenido c) void
+    }
+    class Creador {
+        +publicarContenido(Contenido c) void
+        +obtenerEstadisticas() String;
+        +getReproducciones(Contenido c) String
+        +getCantidadMeGusta(Contenido c) int
+        +getGeneroPredomina() String
+        +getRecaudacionTotal() double
+    }
+    class Reproductor{
+        +adelantar(int segundos);
+        +pausar(Contenido c): void
+        +reproducirContenido(Contenido c) void
+    }
+    class Contenido <<abstract>> { 
+        -String id
+        -String titulo
+        -int duracionEnSegundos
+        -int cantReproducciones
+        -int cantMeGusta
+        -double recaudadoTotal 
+        -int reproduccionesMujeres 
+        -int reproduccionesHombres 
+        +reproducirContenido(Contenido c) void <<abstract>>
+
+        +incrementarReproducciones() void
+        +incrementarMeGusta() void
+        +getReproducciones() int
+        +getRecaudadoTotal() double
+        +getGeneroPredominaOyentes() String
+    }
+    class Generos{ <<enumeration>>
+    ROCK, POP, TRAP, CLASICO
+    }
+    class Cancion {
+        -String letra
+        -String invitado
+        -boolean esSingle
+        +reproducirContenido(Contenido c) void
+
+    }
+    class Album { 
+        -String id
+        -String nombre
+        -String fechaLanzamiento
+        +agregarCancion(Cancion c) void
+        +getCantidadCanciones() int
+        +getCanciones() List~Cancion~
+        +getDuracionTotal() int
+    }
+    class Audiolibro {    
+        -String autor
+        -String narrador
+        -String sinopsis
+        -int cantCapitulos  
+        +reproducirContenido(Contenido c) void
+    }
+    class Podcast{
+        -String id
+        -String nombre
+        -String descripcionBreve
+
+    }
+    class EpisodioPodcast {
+        -int numeroEpisodio
+        .String resumen
+        -String invitado
+        +reproducirContenido(Contenido c) void
+    }
+    class Playlist {
+        -String id
+        -String nombre
+        
+        +agregarContenido(Contenido c) void
+        +eliminarContenido(Contenido c) void
+    }
+    class Reproduccion {
+        -LocalDateTime fechaHora
+
+        +getFechaHora() LocalDateTime
+    }
+    class Plan { <<abstract>>
+        -String nombre
+        -double precioMensual
+        +puedeDescargar() boolean *
+        +tienePublicidad() boolean *
+    }
+    class PlanGratuito{
+        +puedeDescargar() boolean
+        +tienePublicidad() boolean 
+    }
+    class PlanPago {
+        -String tipo 
+        -LocalDateTime fechaInicio 
+        -LocalDateTime fechaVencimiento
+        +puedeDescargar() boolean 
+        +tienePublicidad() boolean 
+    }
+    PlataformaStreaming "1" o-- "*" UsuarioConsumidor
+    PlataformaStreaming "1" o-- "1" Catalogo
+    Catalogo "1" o-- "*" Contenido
+    UsuarioConsumidor <|-- Creador
+    UsuarioConsumidor "1" --> "1" Plan 
+    UsuarioConsumidor "1" *-- "*" Reproduccion 
+    UsuarioConsumidor "1" *-- "1" Biblioteca
+    Biblioteca "1" *-- "*" Playlist
+    Biblioteca "1" *-- "1" Playlist : meGusta
+    Plan <|-- PlanGratuito 
+    Plan <|-- PlanPago 
+    Creador "1" o-- "*" Contenido : Posted List
+    Album "1" o-- "*" Cancion 
+    Playlist "*" o-- "*" Contenido 
+    Playlist "1" --> "1" UsuarioConsumidor
+    Podcast "1" o-- "*" EpisodioPodcast
+    Contenido "*" --> "1" Creador 
+    Contenido <|-- Cancion 
+    Contenido <|-- EpisodioPodcast
+    Contenido <|-- Audiolibro
