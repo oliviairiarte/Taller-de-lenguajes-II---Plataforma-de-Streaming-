@@ -84,11 +84,11 @@ public class Catalogo {
      * @param genero Género musical o temático a buscar.
      * @return Lista de {@link Contenido} que coinciden con el género. 
      */
-    public List<Contenido> filtrarPorGenero(String genero){
+    public List<Contenido> filtrarPorGenero(Generos genero){
         List<Contenido> lista = new ArrayList<>();
         if (genero!=null){
             for (Contenido c: contenidos){
-                if (c.getGenero()!=null && c.getGenero().name().equalsIgnoreCase(genero)){
+                if (c.getGenero() == genero){
                     lista.add(c);
                 }
             }
