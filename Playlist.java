@@ -9,6 +9,7 @@ import java.util.UUID;
  */
 public class Playlist {
     private String nombre;
+    private String id;
     private UsuarioConsumidor creador;
     private List<Contenido> contenidos;
 
@@ -19,6 +20,8 @@ public class Playlist {
      */
     public Playlist(String nombre, UsuarioConsumidor creador){
         this.nombre= nombre;
+        this.id= "plt-"+UUID.randomUUID().toString().substring(0, 8);
+
         this.contenidos= new ArrayList<>();
         this.creador= creador;
     }
