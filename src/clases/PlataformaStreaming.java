@@ -20,8 +20,8 @@ public class PlataformaStreaming{
      * @param nombre Nombre comercial de la plataforma. 
      * @param fecha Fecha de inicio de operaciones. 
      */
-    public PlataformaStreaming(String nombre, LocalDate fecha){ //creacion de la plataforma
-        this.fechaLanzamiento= fecha;
+    public PlataformaStreaming(String nombre){ 
+        this.fechaLanzamiento= LocalDate.now();
         this.nombrePlataforma= nombre;
         this.usuarios= new ArrayList<>(); 
         this.catalogo= new Catalogo(); 
@@ -60,6 +60,9 @@ public class PlataformaStreaming{
      */
     public void mostrarUsuarios(){
         System.out.println("Usuarios registrados en "+getNombrePlataforma()+": ");
+        if (usuarios.isEmpty()){
+            System.out.println("No hay usuarios registrados. ");
+        }
         for (UsuarioConsumidor u: usuarios){
             System.out.println(u); //to string de usuario
         }
