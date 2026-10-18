@@ -8,7 +8,6 @@ import java.util.UUID;
  * Agrupa distintos {@link Contenido} y pertenece obligatoriamente a un {@link UsuarioConsumidor}.
  */
 public class Playlist {
-    private String id;
     private String nombre;
     private UsuarioConsumidor creador;
     private List<Contenido> contenidos;
@@ -22,7 +21,6 @@ public class Playlist {
         this.nombre= nombre;
         this.contenidos= new ArrayList<>();
         this.creador= creador;
-        this.id= "plt-"+UUID.randomUUID().toString().substring(0, 8);
     }
     
     /**
