@@ -175,15 +175,15 @@ classDiagram
     }
 
 
-    PlataformaStreaming "1" o-- "*" UsuarioConsumidor
-    PlataformaStreaming "1" o-- "1" Catalogo
+    PlataformaStreaming "1" *-- "*" UsuarioConsumidor
+    PlataformaStreaming "1" *-- "1" Catalogo
     Catalogo "1" o-- "*" Contenido
 
     UsuarioConsumidor <|-- UsuarioCreador
-    UsuarioConsumidor "1" --> "1" Plan 
+    UsuarioConsumidor "1" -- "1" Plan 
 
     UsuarioConsumidor "1" *-- "*" Reproduccion 
-    Reproduccion "*" --> "1" Contenido
+    Reproduccion "*" -- "1" Contenido
     UsuarioConsumidor "1" *-- "1" Biblioteca
 
     Biblioteca "1" *-- "*" Playlist
@@ -197,12 +197,12 @@ classDiagram
     Album "1" o-- "*" Cancion 
 
     Playlist "*" o-- "*" Contenido 
-    Playlist "1" --> "1" UsuarioConsumidor
+    Playlist "1" -- "1" UsuarioConsumidor
 
     Podcast "1" o-- "*" EpisodioPodcast
     
     Contenido <|-- Cancion 
     Contenido <|-- EpisodioPodcast
     Contenido <|-- Audiolibro
-    Contenido "*" --> "1" UsuarioCreador 
-    Contenido "*" --> "1" Genero
+    Contenido "*" -- "1" UsuarioCreador 
+    Contenido "*" -- "1" Genero
