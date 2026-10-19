@@ -34,10 +34,10 @@ La documentación gráfica está disponible dentro del repositorio:
 - **Entorno de Desarrollo (IDE):** Eclipse IDE o Visual Studio Code (con Extension Pack for Java)
 
 ### Pasos para clonar
-Clonar el repositorio oficial desde el servidor de la facultad: 
-    ```bash 
-    git clone [dirección] 
-    cd grupo-4
+Clonar el repositorio oficial desde el servidor de la facultad:  <br>
+    ```bash <br>
+    git clone [dirección] <br>
+    cd grupo-4 <br>
 
 
 
