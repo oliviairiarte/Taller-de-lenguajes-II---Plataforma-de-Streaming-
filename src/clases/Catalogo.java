@@ -2,11 +2,11 @@ package clases;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.*;
+
 /**
  * Representa el catálogo global de contenidos de la {@link PlataformaStreaming}.
  * Permite la publicación, filtrado por género, búsquedas por artista y cálculo de métricas. 
  */
-
 public class Catalogo {
     private List<Contenido> contenidos; 
 
@@ -110,18 +110,27 @@ public class Catalogo {
 
     public List<Contenido> buscarContenido(String criterio) {
         List<Contenido> lista= new ArrayList<>();
-        String crit = criterio.toLowerCase();
-        for (Contenido c : contenidos) {
-            if (c.getNombre().toLowerCase().contains(crit) || c.getGenero().name().toLowerCase().contains(crit)) {
-                lista.add(c);
+        if (criterio != null && !criterio.isBlank()) {
+            String crit = criterio.toLowerCase(); 
+            for (Contenido c : contenidos) { 
+                boolean coincideNombre = c.getNombre() != null && c.getNombre().toLowerCase().contains(crit); 
+                boolean coincideGenero = c.getGenero() != null && c.getGenero().name().toLowerCase().contains(crit); 
+                if (coincideNombre || coincideGenero) { 
+                    lista.add(c); 
+                } 
             }
         }
         return lista;
     }
 
 
-    // --- Getters ---
+    // --- Getters y setters---
     public List<Contenido> getContenidos(){
         return this.contenidos;
+    }
+    public void setContenidos(List<Contenido> contenidos){
+        if (contenidos!=null){
+            this.contenidos= contenidos;
+        }
     }
 }

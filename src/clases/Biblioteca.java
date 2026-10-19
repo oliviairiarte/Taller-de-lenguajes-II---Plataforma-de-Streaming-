@@ -25,8 +25,8 @@ public class Biblioteca {
      * @return La {@link Playlist} creada e incorporada. 
      */
     public Playlist crearPlaylist(String nombre, UsuarioConsumidor creador){
-        if (nombre==null && creador==null){
-            return null;
+        if (nombre == null || nombre.isBlank() || creador == null) { 
+            return null; 
         }
         Playlist p= new Playlist(nombre,creador);
         this.playlistsGenerales.add(p);
@@ -58,6 +58,10 @@ public class Biblioteca {
      */
     public void eliminarPlaylist(Playlist p){
         if (p!=null){
+            if (p.equals(playlistMeGusta)) { 
+                System.out.println("No se puede eliminar la lista especial 'Me gusta'."); 
+                return; 
+            }
             if (this.playlistsGenerales.remove(p)) { 
                 System.out.println("Se eliminó " + p.getNombre()); 
             } else { 
@@ -85,13 +89,22 @@ public class Biblioteca {
         return null;
     }
 
-    // --- Getters ---
+    // --- Getters y setters ---
     public Playlist getMeGusta(){
         return this.playlistMeGusta;
     }
-
+    public void setMeGusta(Playlist playlistMeGusta) { 
+        if (playlistMeGusta != null) { 
+            this.playlistMeGusta = playlistMeGusta; 
+        } 
+    }
     public List<Playlist> getPlaylists(){
         return this.playlistsGenerales;
+    }
+    public void setPlaylists(List<Playlist> playlistsGenerales){
+        if (playlistsGenerales != null){
+            this.playlistsGenerales= playlistsGenerales;
+        }
     }
     
 }

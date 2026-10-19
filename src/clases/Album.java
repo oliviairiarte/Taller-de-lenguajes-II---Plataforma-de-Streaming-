@@ -49,6 +49,14 @@ public class Album {
         return total;
     }
 
+    @Override
+    public String toString() { 
+        int totalSeg = getDuracionTotal(); 
+        int min = totalSeg / 60; 
+        int seg = totalSeg % 60; 
+        return String.format("Álbum: %s (%d canciones, %02d:%02d)", getNombre(), getCantidadCanciones(), min, seg); 
+    }
+ 
     // --- Getters ---
     public int getCantidadCanciones(){
         return this.canciones.size();
@@ -59,8 +67,18 @@ public class Album {
     public List<Cancion> getCanciones(){
         return this.canciones;
     }
+    public void setCanciones(List<Cancion> canciones){
+        if (canciones!=null){
+            this.canciones= canciones;
+        }
+    }
     public String getNombre(){
         return this.nombre;
+    }
+    public void setNombre(String nombre) { 
+        if (nombre != null && !nombre.isBlank()) { 
+            this.nombre = nombre; 
+        } 
     }
     public LocalDate getFechaLanzamiento(){
         return this.fechaLanzamiento;

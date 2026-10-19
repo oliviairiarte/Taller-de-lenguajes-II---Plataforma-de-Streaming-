@@ -86,39 +86,79 @@ public abstract class Contenido {
     }
 
     // --Getters --
-    public int getReproducciones(){
-        return this.cantReproducciones;
-    }
-
-    public String getId(){
-        return this.id;
-    }
-
     public int getDuracionEnSegundos(){
         return this.duracionEnSegundos;
     }
-
-    public UsuarioCreador getArtista(){
-        return this.creador;
-    }
-
-    public String getNombre(){
-        return this.nombre;
-    }
-
-    public Genero getGenero(){ 
+    public Genero getGenero(){
         return this.genero;
     }
-
-    public LocalDate getFechaLanzamiento(){
-        return this.fechaLanzamiento;
+    public int getCantMeGusta() { 
+        return this.cantMeGusta; 
+    } 
+    public double getRecaudadoTotal() { 
+        return this.recaudadoTotal; 
+    }
+    public int getReproduccionesMujeres() { 
+        return this.reproduccionesMujeres; 
+    } 
+    public int getReproduccionesHombres() { 
+        return this.reproduccionesHombres; 
+    } 
+    public LocalDate getFechaLanzamiento() { 
+        return this.fechaLanzamiento; 
+    }
+    public UsuarioCreador getArtista() { 
+        return this.creador; 
+    } 
+    public String getId() {
+        return id;
+    }
+    public String getNombre() {
+        return this.nombre;
+    }
+    public int getReproducciones() { 
+        return this.cantReproducciones; 
     }
 
-    public int getCantMeGusta(){
-        return this.cantMeGusta;
-    }
-
-    public double getRecaudadoTotal(){
-        return this.recaudadoTotal;
-    }
+    // --- Setters --- 
+    public void setNombre(String nombre) { 
+        if (nombre != null && !nombre.isBlank()) { 
+            this.nombre = nombre; 
+        } 
+    } 
+    public void setDuracionEnSegundos(int duracionEnSegundos) { 
+        if (duracionEnSegundos > 0) { 
+            this.duracionEnSegundos = duracionEnSegundos; 
+        } 
+    } 
+    public void setGenero(Genero genero) { 
+        if (genero != null) { 
+            this.genero = genero; 
+        } 
+    } 
+    public void setCreador(UsuarioCreador creador) { 
+        if (creador != null) { 
+            this.creador = creador; 
+        } 
+    } 
+    public void setCantMeGusta(int cantMeGusta) { 
+        if (cantMeGusta > 0) { 
+            this.cantMeGusta = cantMeGusta; 
+        } 
+    } 
+    public void setRecaudadoTotal(double recaudadoTotal) { 
+        if (recaudadoTotal > 0) { 
+            this.recaudadoTotal = recaudadoTotal; 
+        } 
+    } 
+    public void setReproduccionesMujeres(int reproduccionesMujeres) { 
+        if (reproduccionesMujeres >= 0) { 
+            this.reproduccionesMujeres = reproduccionesMujeres; 
+        } 
+    } 
+    public void setReproduccionesHombres(int reproduccionesHombres) { 
+        if (reproduccionesHombres >= 0) { 
+            this.reproduccionesHombres = reproduccionesHombres; 
+        } 
+    } 
 }

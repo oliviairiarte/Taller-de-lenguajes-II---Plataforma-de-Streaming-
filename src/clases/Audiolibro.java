@@ -35,17 +35,31 @@ public class Audiolibro extends Contenido{
     public void reproducirContenido(){
         System.out.println("Reproduciendo el audiolibro "+toString()+", narrado por "
         +getNarrador()+" y con "+getCantCapitulos()+" capitulos.");
-        incrementarReproducciones();
     }
 
     // ---Getters---
     public String getNarrador(){
         return this.narrador;
     }
+    public void setNarrador(String narrador) { 
+        if (narrador != null && !narrador.isBlank()) { 
+            this.narrador = narrador; 
+        } 
+    }
     public String getSinopsis(){
         return this.sinopsis;
     }
+    public void setSinopsis(String sinopsis) { 
+        if (sinopsis != null && !sinopsis.isBlank()) { 
+            this.sinopsis = sinopsis; 
+        } 
+    }
     public int getCantCapitulos(){
         return this.cantCapitulos;
+    }
+    public void setCantCapitulos(int cantCapitulos) { 
+        if (cantCapitulos > 0) { 
+            this.cantCapitulos = cantCapitulos; 
+        } 
     }
 }

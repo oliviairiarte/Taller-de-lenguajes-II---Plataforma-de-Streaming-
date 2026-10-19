@@ -6,7 +6,7 @@ package clases;
  */
 public class Cancion extends Contenido{
     private String letra;
-    private String invitado; //tal vez si al crearse no se recibe lo seteamos en null(?)
+    private String invitado; 
     private boolean esSingle;
 
     /**
@@ -47,20 +47,32 @@ public class Cancion extends Contenido{
     @Override 
 
     public void reproducirContenido(){
-        System.out.println("Reproduciendo la canción " + toString()+
-        invitado != null && !invitado.isEmpty() ? " | Invitado: " + getInvitado()+
-        ", " : ""+toString());
-        incrementarReproducciones();
+        String textoInvitado = (invitado != null && !invitado.isBlank()) ? " (feat. " + getInvitado() + ")" : ""; 
+        System.out.println("Reproduciendo la canción: " + getNombre() + textoInvitado + " - " + toString());
     }
 
     // --- getters ---
-    public String getLetra(){
-        return this.letra;
-    }
-    public String getInvitado(){
-        return this.invitado;
-    }
-    public boolean getEsSingle(){
-        return this.esSingle;
+    public String getLetra() { 
+        return this.letra; 
+    } 
+    public void setLetra(String letra) { 
+        if (letra != null && !letra.isBlank()) { 
+            this.letra = letra; 
+        } 
+    } 
+    public String getInvitado() { 
+        return this.invitado; 
+    } 
+    public void setInvitado(String invitado) { 
+        this.invitado = invitado; 
+    } 
+    public boolean isEsSingle() {
+        return this.esSingle; 
+    } 
+    public boolean getEsSingle() { 
+        return this.esSingle; 
+    } 
+    public void setEsSingle(boolean esSingle) { 
+        this.esSingle = esSingle; 
     }
 }
