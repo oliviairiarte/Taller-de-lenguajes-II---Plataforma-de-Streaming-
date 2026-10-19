@@ -59,8 +59,6 @@ classDiagram
     class Reproduccion {
         - LocalDateTime fechaReproduccion
         - Contenido contenidoAsociado
-        + getFechaHora() LocalDateTime 
-        + getContenido() Contenido
     }
 
     class Biblioteca{
@@ -71,7 +69,6 @@ classDiagram
         + marcarMeGusta(Contenido c) void
         + eliminarPlaylist(Playlist p) void
         + getPlaylist(String nombre) Playlist
-        + getMeGusta() Playlist
     }
 
     class Contenido { <<abstract>>
@@ -114,7 +111,6 @@ classDiagram
         - LocalDate fechaLanzamiento
         - List~Cancion~ canciones
         + agregarCancion(Cancion c) void
-        + getCanciones() List~Cancion~
         + getDuracionTotal() int
     }
 
