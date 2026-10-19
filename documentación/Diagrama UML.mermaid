@@ -191,12 +191,12 @@ classDiagram
     UsuarioConsumidor "1" *-- "1" Biblioteca
 
     Biblioteca "1" *-- "*" Playlist
-    Biblioteca "1" *-- "1" Playlist : meGusta
+    Biblioteca "1" *-- "1" Playlist
 
     Plan <|-- PlanGratuito 
     Plan <|-- PlanPago 
 
-    UsuarioCreador "1" o-- "*" Contenido : Posted List
+    UsuarioCreador "1" o-- "*" Contenido
 
     Album "1" o-- "*" Cancion 
 
