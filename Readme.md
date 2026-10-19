@@ -38,6 +38,7 @@ Clonar el repositorio oficial desde el servidor de la facultad:  <br>
     ```bash <br>
     git clone [dirección] <br>
     cd grupo-4 <br>
+    git switch main <br> 
 
 
 
