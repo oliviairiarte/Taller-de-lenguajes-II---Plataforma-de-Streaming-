@@ -16,7 +16,7 @@ public class UsuarioConsumidor {
     private String email;
     private LocalDate fechaInicioCuenta;
     private Plan plan;
-    private List<Reproduccion> historialReciente;
+    private List<Reproduccion> historial;
     private Biblioteca biblioteca;
     
     /** 
@@ -32,8 +32,8 @@ public class UsuarioConsumidor {
         this.id = "usr-" + UUID.randomUUID().toString().substring(0, 8);
         this.fechaInicioCuenta= LocalDate.now();
         this.biblioteca= new Biblioteca(this);
-        this.historialReciente= new ArrayList<>();
-        this.plan= new PlanGratuito(); //default
+        this.historial= new ArrayList<>();
+        this.plan= new PlanGratuito(); 
     }
 
     /**
@@ -73,7 +73,7 @@ public class UsuarioConsumidor {
      */
     public void reproducirContenido(Contenido c){
         if (c!=null){
-            Reproductor.reproducirContenido(c);
+            Reproductor.reproducirContenido(c, getPlan(), getHistorial().size());
             registrarEscucha(c);
         }
     }
@@ -83,12 +83,14 @@ public class UsuarioConsumidor {
      * @param c {@link Contenido} escuchado por el usuario. 
      */
     public void registrarEscucha(Contenido c){
-        this.historialReciente.add(new Reproduccion(c));
+        if (c!=null){
+            this.historial.add(new Reproduccion(c));
+        }
     }
     
     @Override 
     public String toString(){
-        return getNombreUsuario()+" ("+getEmail()+").";
+        return String.format("  Usuario: %s (%s) | Email: %s | Plan: %s", getNombreUsuario(), getId(), getEmail(), plan.getNombre());
     }
 
     // --- Getters y Setters
@@ -99,7 +101,7 @@ public class UsuarioConsumidor {
         return this.fechaInicioCuenta;
     }
     public List<Reproduccion> getHistorial(){
-        return this.historialReciente;
+        return this.historial;
     }
     public Biblioteca getBiblioteca(){
         return this.biblioteca;
@@ -113,8 +115,20 @@ public class UsuarioConsumidor {
     public Plan getPlan(){
         return this.plan;
     }
-    public void setPlan(Plan plan){
-        this.plan= plan;
+    public void setNombreUsuario(String nombreUsuario) {
+        if (nombreUsuario != null && !nombreUsuario.isBlank()) {
+            this.nombreUsuario = nombreUsuario;
+        }
+    }
+    public void setEmail(String email) {
+        if (email != null && !email.isBlank()) {
+            this.email = email;
+        }
+    }
+    public void setPlan(Plan plan) {
+        if (plan != null) {
+            this.plan = plan;
+        }
     }
 
 }

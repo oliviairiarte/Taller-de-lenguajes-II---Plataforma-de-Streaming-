@@ -4,6 +4,7 @@ package clases;
  * Proporciona métodos de utilidad estáticos para simular las acciones de control
  * del reproductor multimedia de la plataforma (reproducir, pausar, adelantar).
  */
+
 public class Reproductor {
 
     /**
@@ -28,13 +29,28 @@ public class Reproductor {
     }
 
     /**
-     * Ejecuta la reproducción de un {@link Contenido} e incrementa sus métricas globales. 
-     * @param c {@link Contenido} a reproducir.
+     * Ejecuta la reproducción de un {@link Contenido}, evalúa la emisión de publicidad 
+     * e incrementa las métricas globales del contenido. 
+     * @param c {@link Contenido} a reproducir. 
+     * @param p {@link Plan} de suscripción del usuario. 
+     * @param cantReproducciones Cantidad acumulada de reproducciones en el historial del usuario.
      */
-    public static void reproducirContenido(Contenido c){
+    public static void reproducirContenido(Contenido c, Plan p, int cantReproducciones){
         if (c!=null){
+            if (p!=null && p.tienePublicidad()){
+                if (cantReproducciones>0 && (cantReproducciones % 10 == 0)){
+                    reproducirPublicidad();
+                }
+            }
             c.reproducirContenido();
             c.incrementarReproducciones();
         }
+    }
+
+    /**
+     * Emite el anuncio publicitario correspondiente para planes gratuitos. 
+     */
+    public static void reproducirPublicidad(){
+        System.out.println("📢 [PUBLICIDAD] ¡Suscribite al Plan Premium para escuchar sin anuncios!");
     }
 }

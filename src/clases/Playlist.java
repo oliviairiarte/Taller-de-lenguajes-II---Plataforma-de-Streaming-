@@ -31,7 +31,7 @@ public class Playlist {
      * @param c {@link Contenido} a incorporar. 
      */
     public void agregarContenido(Contenido c){
-        if (c!=null){
+        if (c!=null && !contenidos.contains(c)){
             this.contenidos.add(c);
         }
     }
@@ -53,17 +53,30 @@ public class Playlist {
         int tot=0;
         for (Contenido c: contenidos){
             if (c!=null){
-                tot+=c.getDuracion();
+                tot+=c.getDuracionEnSegundos();
             }
         }
         return tot;
     }
 
-    // --- Getters ---
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Playlist '").append(nombre).append("' (").append(contenidos.size()).append(" ítems):\n");
+        if (contenidos.isEmpty()) {
+            sb.append("   (Lista vacía)\n");
+        } else {
+            for (Contenido c : contenidos) {
+                sb.append("   - ").append(c.toString()).append("\n");
+            }
+        }
+        return sb.toString();
+    }
+
+    // --- Getters y setters ---
     public String getNombre(){
         return this.nombre;
     }
-    
     public List<Contenido> getContenidos(){
         return this.contenidos;
     }
@@ -73,5 +86,14 @@ public class Playlist {
     public String getId(){
         return this.id;
     }
-
+    public void setNombre(String nombre) { 
+        if (nombre != null && !nombre.isBlank()) { 
+            this.nombre = nombre; 
+        } 
+    } 
+    public void setCreador(UsuarioConsumidor creador) { 
+        if (creador != null) { 
+            this.creador = creador; 
+        } 
+    }
 }

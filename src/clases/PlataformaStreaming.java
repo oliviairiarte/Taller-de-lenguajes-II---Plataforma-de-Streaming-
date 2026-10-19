@@ -33,8 +33,12 @@ public class PlataformaStreaming{
      */
     public void agregarUsuario(UsuarioConsumidor u){
         if (u!=null){
-            this.usuarios.add(u);
-            System.out.println("Bienvenido, "+u.getNombreUsuario()+"!");
+            if (usuarios.contains(u)){
+                System.out.println("Ya existe en la plataforma");
+            } else {
+                this.usuarios.add(u);
+                System.out.println("Bienvenido, "+u.getNombreUsuario()+"!");
+            }
         }
     }
 
@@ -64,11 +68,11 @@ public class PlataformaStreaming{
             System.out.println("No hay usuarios registrados. ");
         }
         for (UsuarioConsumidor u: usuarios){
-            System.out.println(u); //to string de usuario
+            System.out.println(u); 
         }
     }
 
-    // --- Getters ---
+    // --- Getters y setters---
     public Catalogo getCatalogo(){
         return this.catalogo;
     }
@@ -84,6 +88,20 @@ public class PlataformaStreaming{
     public LocalDate getFechaLanzamiento(){
         return this.fechaLanzamiento;
     }
-
+    public void setNombrePlataforma(String nombrePlataforma) { 
+        if (nombrePlataforma != null && !nombrePlataforma.isBlank()) {
+             this.nombrePlataforma = nombrePlataforma; 
+        } 
+    } 
+    public void setCatalogo(Catalogo catalogo) { 
+        if (catalogo != null) { 
+            this.catalogo = catalogo; 
+        } 
+    } 
+    public void setUsuarios(List<UsuarioConsumidor> usuarios){
+        if (usuarios != null){
+            this.usuarios= usuarios;
+        }
+    }
 }
 

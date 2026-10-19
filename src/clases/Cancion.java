@@ -13,13 +13,13 @@ public class Cancion extends Contenido{
      * Constructor completo para una canción con artista invitado.
      * @param nombre Título de la canción. 
      * @param duracionEnSegundos Duración total en segundos.
-     * @param genero {@link Generos Género} musical.
+     * @param genero {@link Genero Género} musical.
      * @param creador {@link UsuarioCreador} autor de la obra.
      * @param letra Letra completa de la canción. 
      * @param invitado Nombre del artista invitado / feat (puede ser {@code null}). 
      * @param esSingle {@code true} si se lanzó como sencillo individual, {@code false} en caso contrario
      */
-    public Cancion(String nombre, int duracionEnSegundos, Generos genero, 
+    public Cancion(String nombre, int duracionEnSegundos, Genero genero, 
     UsuarioCreador creador, String letra, String invitado, boolean esSingle){
         super(nombre, duracionEnSegundos, genero, creador);
         this.letra= letra;
@@ -31,12 +31,12 @@ public class Cancion extends Contenido{
      * Constructor sobrecargado para una canción sin artista invitado. 
      * @param nombre Título de la canción.
      * @param duracionEnSegundos Duración total en segundos.
-     * @param genero {@link Generos Género} musical.  
+     * @param genero {@link Genero Género} musical.  
      * @param creador {@link UsuarioCreador} autor de la obra.
      * @param letra Letra de la canción.
      * @param esSingle {@code true} si es un sencillo individual.
      */
-    public Cancion(String nombre, int duracionEnSegundos, Generos genero, 
+    public Cancion(String nombre, int duracionEnSegundos, Genero genero, 
     UsuarioCreador creador, String letra, boolean esSingle){
         this(nombre, duracionEnSegundos, genero, creador, letra, null, esSingle);
     }
@@ -47,7 +47,9 @@ public class Cancion extends Contenido{
     @Override 
 
     public void reproducirContenido(){
-        System.out.println("Reproduciendo la canción " + toString() );
+        System.out.println("Reproduciendo la canción " + toString()+
+        invitado != null && !invitado.isEmpty() ? " | Invitado: " + getInvitado()+
+        ", " : ""+toString());
         incrementarReproducciones();
     }
 

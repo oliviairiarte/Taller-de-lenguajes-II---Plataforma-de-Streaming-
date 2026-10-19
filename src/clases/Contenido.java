@@ -13,7 +13,7 @@ public abstract class Contenido {
     private int cantReproducciones;
     private String nombre;
     private LocalDate fechaLanzamiento;
-    private Generos genero; 
+    private Genero genero; 
     private UsuarioCreador creador;
     private int cantMeGusta;
     private double recaudadoTotal;
@@ -24,10 +24,10 @@ public abstract class Contenido {
      * Constructor base para inicializar un nuevo contenido con sus métricas en cero. 
      * @param nombre Título o nombre del contenido.
      * @param duracionEnSegundos Duración total expresada en segundos. 
-     * @param genero {@link Generos Género} temático o musical del contenido.
+     * @param genero {@link Genero Género} temático o musical del contenido.
      * @param creador {@link UsuarioCreador} autor y dueño de la obra. 
      */
-    public Contenido(String nombre, int duracionEnSegundos, Generos genero, UsuarioCreador creador){
+    public Contenido(String nombre, int duracionEnSegundos, Genero genero, UsuarioCreador creador){
         this.nombre= nombre;
         this.duracionEnSegundos= duracionEnSegundos;
         this.genero= genero;
@@ -51,6 +51,7 @@ public abstract class Contenido {
      */
     public void incrementarReproducciones(){
         this.cantReproducciones++;
+        this.recaudadoTotal+= 0.005;
     }
 
     /**
@@ -76,8 +77,12 @@ public abstract class Contenido {
     }
     
     @Override
-    public String toString(){ 
-        return getNombre() + " by " + (this.creador != null ? this.creador.getNombreUsuario() : "Desconocido"); 
+    public String toString() {
+        int min = getDuracionEnSegundos() / 60;
+        int seg = getDuracionEnSegundos() % 60;
+        String autorNombre = (creador != null) ? creador.getNombreUsuario() : "Desconocido";
+        return String.format("%s - %s (%02d:%02d) | Género: %s | Reproducciones: %d | Likes: %d",
+                getNombre(), getArtista(), min, seg, getGenero(), getReproducciones(), getCantMeGusta());
     }
 
     // --Getters --
@@ -89,7 +94,7 @@ public abstract class Contenido {
         return this.id;
     }
 
-    public int getDuracion(){
+    public int getDuracionEnSegundos(){
         return this.duracionEnSegundos;
     }
 
@@ -101,7 +106,7 @@ public abstract class Contenido {
         return this.nombre;
     }
 
-    public Generos getGenero(){ 
+    public Genero getGenero(){ 
         return this.genero;
     }
 

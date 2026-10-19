@@ -35,7 +35,7 @@ public class Podcast {
         }
     }
 
-    // --- Getters ---
+    // --- Getters y setters ---
     public int getCantEpisodios(){
         return this.episodios.size();
     }
@@ -51,5 +51,15 @@ public class Podcast {
     public String getDescripcion(){
         return this.descripcion;
     }
+    public void setNombre(String nombre) { 
+        if (nombre != null && !nombre.isBlank()) { 
+            this.nombre = nombre; 
+        } 
+    } 
+    public void setDescripcion(String descripcion) { 
+        if (descripcion != null && !descripcion.isBlank()) { 
+            this.descripcion = descripcion; 
+        } 
+    } 
 }
 

@@ -1,7 +1,7 @@
 package clases;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.*;
 /**
  * Representa el catálogo global de contenidos de la {@link PlataformaStreaming}.
  * Permite la publicación, filtrado por género, búsquedas por artista y cálculo de métricas. 
@@ -22,7 +22,7 @@ public class Catalogo {
      * @param c {@link Contenido} a publicar. 
      */
     public void publicarContenido(Contenido c){
-        if (c!=null){
+        if (c!=null && !contenidos.contains(c)){
             contenidos.add(c);
         }
     }
@@ -33,12 +33,11 @@ public class Catalogo {
      * @return El {@link Contenido} encontrado, o {@code null} si no existe. 
      */
     public Contenido getContenido(String nombre){
-        if (nombre == null){
-            return null;
-        }
-        for (Contenido c: contenidos){
-            if (c.getNombre().equalsIgnoreCase(nombre)){
-                return c;
+        if (nombre != null){
+            for (Contenido c: contenidos){
+                if (c.getNombre().equalsIgnoreCase(nombre)){
+                    return c;
+                }
             }
         }
         return null; 
@@ -52,13 +51,13 @@ public class Catalogo {
         if (this.contenidos.isEmpty()) { 
             return null; 
         } 
-        Contenido contenidoMax = this.contenidos.get(0); 
+        Contenido contenidoMaxRep = this.contenidos.get(0); 
         for (Contenido c : contenidos) { 
-            if (c.getReproducciones() > contenidoMax.getReproducciones()) { 
-                contenidoMax = c; 
+            if (c.getReproducciones() > contenidoMaxRep.getReproducciones()) { 
+                contenidoMaxRep = c; 
             } 
         } 
-        return contenidoMax; 
+        return contenidoMaxRep; 
     }
 
     /**
@@ -70,12 +69,11 @@ public class Catalogo {
         List<Contenido> lista = new ArrayList<>();
         if (creador!=null){
             for (Contenido c: contenidos){
-            if (c.getArtista()!=null && c.getArtista().getNombreUsuario().equalsIgnoreCase(creador)){
-                lista.add(c);
+                if (c.getArtista()!=null && c.getArtista().getNombreUsuario().equalsIgnoreCase(creador)){
+                    lista.add(c);
+                }
             }
         }
-        }
-        
         return lista;
     }
 
@@ -84,7 +82,7 @@ public class Catalogo {
      * @param genero Género musical o temático a buscar.
      * @return Lista de {@link Contenido} que coinciden con el género. 
      */
-    public List<Contenido> filtrarPorGenero(Generos genero){
+    public List<Contenido> filtrarPorGenero(Genero genero){
         List<Contenido> lista = new ArrayList<>();
         if (genero!=null){
             for (Contenido c: contenidos){
@@ -109,6 +107,18 @@ public class Catalogo {
             }
         }
     }
+
+    public List<Contenido> buscarContenido(String criterio) {
+        List<Contenido> lista= new ArrayList<>();
+        String crit = criterio.toLowerCase();
+        for (Contenido c : contenidos) {
+            if (c.getNombre().toLowerCase().contains(crit) || c.getGenero().name().toLowerCase().contains(crit)) {
+                lista.add(c);
+            }
+        }
+        return lista;
+    }
+
 
     // --- Getters ---
     public List<Contenido> getContenidos(){

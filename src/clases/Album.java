@@ -40,13 +40,13 @@ public class Album {
      * @return Duración total en segundos.
      */
     public int getDuracionTotal(){
-        int res=0;
+        int total=0;
         for (Cancion c: canciones){
             if (c!=null){
-                res+= c.getDuracion();
+                total+= c.getDuracionEnSegundos();
             }
         }
-        return res;
+        return total;
     }
 
     // --- Getters ---

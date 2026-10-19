@@ -14,13 +14,13 @@ public class Audiolibro extends Contenido{
      * Instancia un nuevo audiolibro inicializando los atributos de la superclase y los propios. 
      * @param nombre Título del audiolibro.
      * @param duracionEnSegundos Duración total en segundos.
-     * @param genero {@link Generos Género} o categoría temática.
+     * @param genero {@link Genero Género} o categoría temática.
      * @param creador {@link UsuarioCreador} autor de la obra (se asigna como creador).
      * @param narrador Nombre de la persona que narra el audiolibro.
      * @param sinopsis Resumen descriptivo de la obra.
      * @param cantCapitulos Número total de capítulos.
      */
-    public Audiolibro(String nombre, int duracionEnSegundos, Generos genero, 
+    public Audiolibro(String nombre, int duracionEnSegundos, Genero genero, 
     UsuarioCreador creador, String narrador, String sinopsis, int cantCapitulos){
         super(nombre, duracionEnSegundos, genero, creador);
         this.narrador= narrador;
@@ -33,7 +33,8 @@ public class Audiolibro extends Contenido{
      */
     @Override 
     public void reproducirContenido(){
-        System.out.println("Reproduciendo el audiolibro "+toString());
+        System.out.println("Reproduciendo el audiolibro "+toString()+", narrado por "
+        +getNarrador()+" y con "+getCantCapitulos()+" capitulos.");
         incrementarReproducciones();
     }
 

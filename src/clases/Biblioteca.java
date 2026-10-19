@@ -25,6 +25,9 @@ public class Biblioteca {
      * @return La {@link Playlist} creada e incorporada. 
      */
     public Playlist crearPlaylist(String nombre, UsuarioConsumidor creador){
+        if (nombre==null && creador==null){
+            return null;
+        }
         Playlist p= new Playlist(nombre,creador);
         this.playlistsGenerales.add(p);
         return p;
