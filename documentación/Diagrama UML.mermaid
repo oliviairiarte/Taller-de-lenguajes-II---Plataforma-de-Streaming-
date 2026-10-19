@@ -1,8 +1,7 @@
 ---
 config:
-    theme: redux-dark-color
+  theme: redux-dark-color
 ---
-
 classDiagram
     class PlataformaStreaming {
         - String nombrePlataforma
@@ -44,20 +43,7 @@ classDiagram
         + reproducirContenido(Contenido c) void
         + registrarEscucha(Contenido c) void
         + agregarAPlaylist(Playlist p, Contenido c)
-        + getId() String
-        + getNombre() String
         + getHistorial() List~Reproduccion~
-    }
-
-    class Biblioteca{
-        - List~Playlist~ playlistsGenerales
-        - Playlist playlistMeGusta
-        + crearPlaylist(String nombre, UsuarioConsumidor creador) Playlist
-        + agregarAPlaylist(Playlist p, Contenido c) void
-        + marcarMeGusta(Contenido c) void
-        + eliminarPlaylist(Playlist p) void
-        + getPlaylist(String nombre) Playlist
-        + getMeGusta() Playlist
     }
 
     class UsuarioCreador {
@@ -77,6 +63,16 @@ classDiagram
         + getContenido() Contenido
     }
 
+    class Biblioteca{
+        - List~Playlist~ playlistsGenerales
+        - Playlist playlistMeGusta
+        + crearPlaylist(String nombre, UsuarioConsumidor creador) Playlist
+        + agregarAPlaylist(Playlist p, Contenido c) void
+        + marcarMeGusta(Contenido c) void
+        + eliminarPlaylist(Playlist p) void
+        + getPlaylist(String nombre) Playlist
+        + getMeGusta() Playlist
+    }
 
     class Contenido { <<abstract>>
         - String id
