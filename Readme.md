@@ -12,7 +12,7 @@
 Este proyecto consiste en la arquitectura y desarrollo en Java del backend para una plataforma de streaming de audio basada en los principios de la Programación Orientada a Objetos. 
 El sistema permite: 
 - Administrar un catálogo heterogéneo de audios (**canciones**, **episodios de podcast** y **audiolibros**) clasificados por categorías.
-- Organizar obras mediante contenedores estructurados como **Álbumes** de canciones y **Podcasts**. 
+- Organizar contenidos de audio mediante contenedores estructurados como **Álbumes** de canciones y **Podcasts**. 
 - Gestionar perfiles de **Usuarios Consumidores** y **Usuarios Creadores** (artistas, autores y podcasters). 
 - Controlar los niveles de servicio según el nivel de suscripción (**Plan Gratuito** con anuncios vs. **Plan Pago** libre de publicidad y con descargas). 
 - Crear y personalizar **Playlists** e integrar favoritos en la biblioteca personal de los oyentes. 
